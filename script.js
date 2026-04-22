@@ -72,3 +72,52 @@ document
   .addEventListener(`click`, function () {
     message.remove();
   });
+
+//Styles
+
+message.style.backgroundColor = `#0F6635`;
+message.style.width = `120%`;
+
+console.log(message.style.height);
+console.log(message.style.width);
+
+console.log(getComputedStyle(message));
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height) + 40 + `px`;
+
+document.documentElement.style.setProperty(`--color-primary`, `orange`);
+
+//Atributes
+const navLogo = document.querySelector(`.nav__logo`);
+console.log(navLogo.alt);
+console.log(navLogo.src);
+console.log(navLogo.className);
+
+//non-standard
+console.log(navLogo.designer);
+console.log(navLogo.getAttribute(`designer`));
+
+navLogo.alt = `alternative-text`;
+navLogo.setAttribute(`company`, `new attribute`);
+console.log(navLogo.getAttribute(`src`));
+console.log(navLogo.src);
+
+const link = document.querySelector(`.nav__link--btn`);
+
+console.log(link.href);
+console.log(link.getAttribute(`href`));
+
+//Data attributes
+console.log(logo.dataset.versionNumber);
+
+//Class
+logo.classList.add(`new`, `j`);
+logo.classList.remove(`new`, `j`);
+logo.classList.toggle(`new`, `j`);
+logo.classList.contains(`new`, `j`);
+
+//Bad practice
+logo.classList = `Klas`;
