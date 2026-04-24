@@ -159,8 +159,8 @@ scrollButton.addEventListener(`click`, function (e) {
 
 //Types of Events
 
-const h1 = document.querySelector(`h1`);
-/*
+/*const h1 = document.querySelector(`h1`);
+
 h1.addEventListener(`mouseenter`, function (e) {
   alert(`This is an important message :D`);
 });
@@ -169,7 +169,7 @@ h1.addEventListener(`mouseenter`, function (e) {
 h1.onmouseenter = function (e) {
   alert(`This is even more important XD`);
 };
-*/
+
 
 const h1Alert = function (e) {
   alert(`Some text`);
@@ -180,3 +180,37 @@ h1.addEventListener(`click`, h1Alert);
 setTimeout(() => {
   h1.removeEventListener(`click`, h1Alert);
 }, 3000);
+*/
+
+//Event Propagation in Practice
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+console.log(randomColor());
+
+document.querySelector(`.nav__link`).addEventListener(`click`, function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`LINK`, e.target, e.currentTarget);
+  //console.log(e.currentTarget === this);
+
+  //STOP PROPAGATION
+  //e.stopPropagation();
+});
+
+document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`CONTAINER`, e.target, e.currentTarget);
+});
+
+document.querySelector(`.nav`).addEventListener(
+  `click`,
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log(`NAV BAR`, e.target, e.currentTarget);
+  },
+  true,
+);
