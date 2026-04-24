@@ -156,3 +156,27 @@ scrollButton.addEventListener(`click`, function (e) {
 
   section1.scrollIntoView({ behavior: `smooth` });
 });
+
+//Types of Events
+
+const h1 = document.querySelector(`h1`);
+/*
+h1.addEventListener(`mouseenter`, function (e) {
+  alert(`This is an important message :D`);
+});
+*/
+/*
+h1.onmouseenter = function (e) {
+  alert(`This is even more important XD`);
+};
+*/
+
+const h1Alert = function (e) {
+  alert(`Some text`);
+};
+
+h1.addEventListener(`click`, h1Alert);
+
+setTimeout(() => {
+  h1.removeEventListener(`click`, h1Alert);
+}, 3000);
