@@ -34,7 +34,7 @@ document.addEventListener('keydown', function (e) {
 /////////////////
 /////////////////
 //Selecting Elements
-
+/*
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
@@ -63,7 +63,7 @@ header.append(message.cloneNode(true));
 header.before(message.cloneNode(true));
 header.after(message.cloneNode(true));
 */
-
+/*
 header.after(message);
 
 //Delete elements
@@ -72,9 +72,10 @@ document
   .addEventListener(`click`, function () {
     message.remove();
   });
-
+  /*
+/*
 //Styles
-
+/*
 message.style.backgroundColor = `#0F6635`;
 message.style.width = `120%`;
 
@@ -121,3 +122,37 @@ logo.classList.contains(`new`, `j`);
 
 //Bad practice
 logo.classList = `Klas`;
+*/
+
+const scrollButton = document.querySelector(`.btn--scroll-to`);
+const section1 = document.querySelector(`#section--1`);
+
+scrollButton.addEventListener(`click`, function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+  console.log(`Current scroll (X/Y): `, window.scrollX, window.scrollY);
+  console.log(
+    `viewport height/width: `,
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth,
+  );
+
+  //Scrolling
+  /*
+  window.scrollTo(
+    s1coords.left + window.scrollX,
+    s1coords.top + window.scrollY,
+  );
+  */
+  /*
+  window.scrollTo({
+    left: s1coords.left + window.scrollX,
+    top: s1coords.top + window.scrollY,
+    behavior: `smooth`,
+  });
+  */
+
+  section1.scrollIntoView({ behavior: `smooth` });
+});
