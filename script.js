@@ -235,6 +235,31 @@ allSections.forEach(section => {
   section.classList.add(`section--hidden`);
 });
 
+//Lazy Loading Images Implementation
+
+const lazyImages = document.querySelectorAll(`img[data-src]`);
+
+const callBackLazy = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener(`load`, function () {
+    entry.target.classList.remove(`lazy-img`);
+  });
+};
+
+const lazyObserver = new IntersectionObserver(callBackLazy, {
+  root: null,
+  threshold: 0,
+  rootMargin: `200px`,
+});
+lazyImages.forEach(img => {
+  lazyObserver.observe(img);
+});
+
 /////////////////
 /////////////////
 /////////////////
